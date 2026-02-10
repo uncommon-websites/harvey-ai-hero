@@ -3,101 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harvey - Professional Class AI</title>
+    <title>Harvey - Practice Made Perfect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
     <style>
+        /* Typography overrides */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #050505; /* Deep black/charcoal match */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        .font-serif-custom {
+        .font-serif {
             font-family: 'Playfair Display', serif;
         }
-        /* Custom utility for the specific arrow size/stroke */
-        .nav-arrow {
-            width: 10px;
-            height: 10px;
-            margin-left: 4px;
-            opacity: 0.7;
+        
+        /* Animation keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+                filter: blur(4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(1.05);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Base animation classes */
+        .animate-fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        .animate-fade-in {
+            opacity: 0;
+            animation: fadeIn 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        .animate-scale-in {
+            opacity: 0;
+            animation: scaleIn 1.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        /* Staggered delays */
+        .delay-0 { animation-delay: 0ms; }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-700 { animation-delay: 700ms; }
+        .delay-1000 { animation-delay: 1000ms; }
+
+        /* Utilities */
+        .text-balance { text-wrap: balance; }
+        .text-pretty { text-wrap: pretty; }
+        
+        /* Custom gradient for the bottom fade */
+        .bottom-fade {
+            background: linear-gradient(to top, #000000 10%, rgba(0,0,0,0.8) 40%, transparent 100%);
+        }
+        
+        /* Custom gradient for the image overlay to darken it */
+        .bg-overlay {
+            background: radial-gradient(circle at 30% 50%, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%);
+        }
+
+        /* Hide scrollbar for logo section but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
-<body class="text-white antialiased min-h-screen flex flex-col">
+<body class="bg-black text-white overflow-x-hidden h-screen w-full relative">
 
-    <!-- Top Banner -->
-    <div class="w-full bg-[#050505] border-b border-white/10 py-2.5 flex justify-center items-center text-[11px] tracking-wide text-gray-300">
-        <span>2025 Year in Review <a href="#" class="text-white ml-1 hover:underline">Learn more →</a></span>
+    <!-- Background Image with Scale Animation -->
+    <div class="absolute inset-0 z-0 overflow-hidden">
+        <img src="https://placehold.co/1920x1080/111111/333333?text=Cinematic+Office+Meeting" 
+             alt="Background" 
+             class="w-full h-full object-cover animate-scale-in opacity-60">
+        <!-- Dark Overlay for readability -->
+        <div class="absolute inset-0 bg-black/50 bg-overlay z-10"></div>
     </div>
 
     <!-- Navigation -->
-    <nav class="w-full px-6 py-5 md:px-10 flex items-center justify-between relative z-20">
+    <nav class="relative z-50 flex items-center justify-between px-6 py-5 md:px-10 animate-fade-in delay-0">
         <!-- Logo -->
-        <div class="flex-shrink-0">
-            <a href="#" class="text-3xl font-serif-custom tracking-tight text-white">Harvey</a>
+        <div class="flex items-center">
+            <a href="#" class="font-serif text-3xl tracking-tight text-white hover:opacity-90 transition-opacity">Harvey</a>
         </div>
 
         <!-- Desktop Menu -->
-        <div class="hidden md:flex items-center space-x-8">
-            <div class="group relative flex items-center cursor-pointer text-[13px] font-medium text-gray-300 hover:text-white transition-colors">
-                Platform
-                <svg class="nav-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        <div class="hidden lg:flex items-center space-x-8 text-[13px] font-medium text-gray-300">
+            <div class="group relative flex items-center cursor-pointer hover:text-white transition-colors">
+                <span>Platform</span>
+                <svg class="w-3 h-3 ml-1 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </div>
-            <div class="group relative flex items-center cursor-pointer text-[13px] font-medium text-gray-300 hover:text-white transition-colors">
-                Solutions
-                <svg class="nav-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <div class="group relative flex items-center cursor-pointer hover:text-white transition-colors">
+                <span>Solutions</span>
+                <svg class="w-3 h-3 ml-1 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </div>
-            <a href="#" class="text-[13px] font-medium text-gray-300 hover:text-white transition-colors">Customers</a>
-            <a href="#" class="text-[13px] font-medium text-gray-300 hover:text-white transition-colors">Security</a>
-            <div class="group relative flex items-center cursor-pointer text-[13px] font-medium text-gray-300 hover:text-white transition-colors">
-                Resources
-                <svg class="nav-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <a href="#" class="hover:text-white transition-colors">Customers</a>
+            <a href="#" class="hover:text-white transition-colors">Security</a>
+            <div class="group relative flex items-center cursor-pointer hover:text-white transition-colors">
+                <span>Resources</span>
+                <svg class="w-3 h-3 ml-1 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </div>
-            <div class="group relative flex items-center cursor-pointer text-[13px] font-medium text-gray-300 hover:text-white transition-colors">
-                About
-                <svg class="nav-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <div class="group relative flex items-center cursor-pointer hover:text-white transition-colors">
+                <span>About</span>
+                <svg class="w-3 h-3 ml-1 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </div>
         </div>
 
         <!-- Login -->
-        <div class="flex-shrink-0">
+        <div class="hidden lg:block">
             <a href="#" class="text-[13px] font-medium text-white hover:text-gray-300 transition-colors">Login</a>
         </div>
+
+        <!-- Mobile Menu Button (Hidden on Desktop) -->
+        <button class="lg:hidden text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
     </nav>
 
-    <!-- Hero Content -->
-    <main class="flex-grow flex flex-col items-center pt-24 md:pt-32 w-full">
-        
-        <!-- Text Content -->
-        <div class="text-center px-4 max-w-4xl mx-auto mb-16">
-            <h1 class="font-serif-custom text-5xl md:text-[5.5rem] leading-[1.1] text-white mb-6 tracking-tight">
-                Professional<br>Class AI
+    <!-- Main Content -->
+    <main class="relative z-40 flex flex-col justify-center h-full px-6 md:px-10 -mt-20">
+        <div class="max-w-4xl">
+            <!-- Headline -->
+            <h1 class="animate-fade-in-up delay-200 font-serif text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.1] text-white mb-6 text-balance tracking-tight">
+                Practice Made Perfect
             </h1>
-            <p class="text-gray-400 text-lg md:text-[1.15rem] leading-relaxed font-light max-w-2xl mx-auto mb-10">
-                Domain-specific AI for law firms, professional<br class="hidden md:block">
-                service providers, and the Fortune 500.
+            
+            <!-- Subheadline -->
+            <p class="animate-fade-in-up delay-300 text-lg md:text-[1.35rem] leading-relaxed text-gray-200 max-w-2xl text-pretty mb-10 font-light">
+                Today’s top law firms and in-house legal teams trust Harvey to elevate their craft and navigate complexity.
             </p>
-            <a href="#" class="inline-block bg-white text-black text-[13px] font-medium px-6 py-3 rounded-[4px] hover:bg-gray-200 transition-colors duration-200">
-                Request a Demo
-            </a>
-        </div>
-
-        <!-- Hero Image -->
-        <div class="w-full max-w-[1400px] mx-auto px-4 md:px-8 pb-10">
-            <div class="relative w-full aspect-[16/7] overflow-hidden rounded-sm">
-                <!-- Using a placeholder that mimics the dark cinematic tone of the original image -->
-                <img src="https://placehold.co/1400x600/1a1a1a/666666?text=Cinematic+Hero+Image" 
-                     alt="Two professionals discussing in a modern office" 
-                     class="w-full h-full object-cover opacity-90">
-                
-                <!-- Gradient overlay to blend bottom if needed, though design looks clean cut -->
-                <div class="absolute inset-0 bg-gradient-to-t from-[#050505]/20 to-transparent pointer-events-none"></div>
+            
+            <!-- CTA Button -->
+            <div class="animate-fade-in-up delay-400">
+                <button class="bg-white text-black text-[15px] font-medium px-6 py-3 rounded hover:bg-gray-100 transition-colors duration-300 ease-out transform hover:scale-[1.02] active:scale-[0.98]">
+                    Request a Demo
+                </button>
             </div>
         </div>
-
     </main>
+
+    <!-- Footer / Logos Section -->
+    <footer class="absolute bottom-0 left-0 w-full z-40 bottom-fade pt-24 pb-8 px-6 md:px-10 animate-fade-in delay-700">
+        <div class="flex flex-col md:flex-row items-end justify-between w-full gap-8">
+            
+            <!-- Logo Strip -->
+            <div class="w-full md:w-3/4 overflow-x-auto no-scrollbar mask-image-linear-gradient">
+                <div class="flex items-center gap-8 md:gap-12 min-w-max opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
+                    <!-- Using placeholders for logos with specific text to mimic the screenshot brands -->
+                    <img src="https://placehold.co/140x40/000000/FFFFFF?text=A%26O+SHEARMAN&font=montserrat" alt="A&O Shearman" class="h-6 md:h-7 w-auto object-contain">
+                    <img src="https://placehold.co/120x40/000000/FFFFFF?text=Gleiss+Lutz&font=playfair-display" alt="Gleiss Lutz" class="h-6 md:h-8 w-auto object-contain">
+                    <img src="https://placehold.co/80x40/000000/FFFFFF?text=CMS&font=roboto" alt="CMS" class="h-6 md:h-8 w-auto object-contain">
+                    <img src="https://placehold.co/140x40/000000/FFFFFF?text=CUATRECASAS&font=lato" alt="Cuatrecasas" class="h-5 md:h-6 w-auto object-contain">
+                    <img src="https://placehold.co/140x40/000000/FFFFFF?text=THOMPSON+HINE&font=merriweather" alt="Thompson Hine" class="h-8 md:h-10 w-auto object-contain">
+                    <img src="https://placehold.co/100x40/000000/FFFFFF?text=MERCK&font=montserrat" alt="Merck" class="h-4 md:h-5 w-auto object-contain">
+                    <img src="https://placehold.co/120x40/000000/FFFFFF?text=COMCAST&font=open-sans" alt="Comcast" class="h-5 md:h-6 w-auto object-contain">
+                    <img src="https://placehold.co/100x40/000000/FFFFFF?text=DENTONS&font=oswald" alt="Dentons" class="h-5 md:h-6 w-auto object-contain">
+                    <img src="https://placehold.co/100x40/000000/FFFFFF?text=Baker&font=playfair-display" alt="Baker" class="h-5 md:h-6 w-auto object-contain opacity-50">
+                </div>
+            </div>
+
+            <!-- Customers Button -->
+            <div class="shrink-0 hidden md:block">
+                <button class="border border-white/30 text-white text-xs font-medium px-4 py-2 rounded hover:bg-white/10 transition-colors duration-300">
+                    Our Customers
+                </button>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>

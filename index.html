@@ -5,21 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harvey - Practice Made Perfect</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    
     <style>
-        /* Typography overrides */
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-        
         /* Animation keyframes */
         @keyframes fadeInUp {
             from {
@@ -74,99 +60,91 @@
         .delay-400 { animation-delay: 400ms; }
         .delay-500 { animation-delay: 500ms; }
         .delay-700 { animation-delay: 700ms; }
-        .delay-1000 { animation-delay: 1000ms; }
 
-        /* Utilities */
+        /* Typography utilities */
         .text-balance { text-wrap: balance; }
         .text-pretty { text-wrap: pretty; }
         
-        /* Custom gradient for the bottom fade */
-        .bottom-fade {
-            background: linear-gradient(to top, #000000 10%, rgba(0,0,0,0.8) 40%, transparent 100%);
-        }
-        
-        /* Custom gradient for the image overlay to darken it */
-        .bg-overlay {
-            background: radial-gradient(circle at 30% 50%, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%);
+        /* Custom font adjustments to match the serif style */
+        .font-serif-display {
+            font-family: "Times New Roman", Times, serif;
         }
 
-        /* Hide scrollbar for logo section but keep functionality */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .animate-fade-in-up,
+            .animate-fade-in,
+            .animate-scale-in {
+                animation: none;
+                opacity: 1;
+                transform: none;
+                filter: none;
+            }
         }
     </style>
 </head>
 <body class="bg-black text-white overflow-x-hidden h-screen w-full relative">
 
-    <!-- Background Image with Scale Animation -->
+    <!-- Background Image with Overlay -->
     <div class="absolute inset-0 z-0 overflow-hidden">
-        <img src="https://placehold.co/1920x1080/111111/333333?text=Cinematic+Office+Meeting" 
-             alt="Background" 
-             class="w-full h-full object-cover animate-scale-in opacity-60">
-        <!-- Dark Overlay for readability -->
-        <div class="absolute inset-0 bg-black/50 bg-overlay z-10"></div>
+        <!-- Using a dark placeholder to simulate the moody office video/image -->
+        <img src="https://placehold.co/1920x1080/111111/333333?text=Cinematic+Office+Background" 
+             alt="Office Background" 
+             class="w-full h-full object-cover animate-scale-in">
+        
+        <!-- Gradient Overlay for text readability -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-10"></div>
+        <div class="absolute inset-0 bg-black/20 z-10"></div>
     </div>
 
     <!-- Navigation -->
-    <nav class="relative z-50 flex items-center justify-between px-6 py-5 md:px-10 animate-fade-in delay-0">
+    <nav class="relative z-50 flex items-center justify-between px-6 py-6 md:px-10 lg:px-12 animate-fade-in delay-0">
         <!-- Logo -->
-        <div class="flex items-center">
-            <a href="#" class="font-serif text-3xl tracking-tight text-white hover:opacity-90 transition-opacity">Harvey</a>
+        <div class="flex-shrink-0">
+            <a href="#" class="font-serif-display text-3xl tracking-wide text-white hover:opacity-80 transition-opacity">Harvey</a>
         </div>
 
         <!-- Desktop Menu -->
-        <div class="hidden lg:flex items-center space-x-8 text-[13px] font-medium text-gray-300">
-            <div class="group relative flex items-center cursor-pointer hover:text-white transition-colors">
-                <span>Platform</span>
-                <svg class="w-3 h-3 ml-1 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        <div class="hidden lg:flex items-center space-x-8 text-[15px] font-medium text-gray-200">
+            <div class="group relative flex items-center gap-1 cursor-pointer hover:text-white transition-colors">
+                Platform
+                <svg class="w-3 h-3 opacity-70 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </div>
-            <div class="group relative flex items-center cursor-pointer hover:text-white transition-colors">
-                <span>Solutions</span>
-                <svg class="w-3 h-3 ml-1 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <div class="group relative flex items-center gap-1 cursor-pointer hover:text-white transition-colors">
+                Solutions
+                <svg class="w-3 h-3 opacity-70 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </div>
-            <a href="#" class="hover:text-white transition-colors">Customers</a>
-            <a href="#" class="hover:text-white transition-colors">Security</a>
-            <div class="group relative flex items-center cursor-pointer hover:text-white transition-colors">
-                <span>Resources</span>
-                <svg class="w-3 h-3 ml-1 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <a href="#" class="cursor-pointer hover:text-white transition-colors">Customers</a>
+            <a href="#" class="cursor-pointer hover:text-white transition-colors">Security</a>
+            <div class="group relative flex items-center gap-1 cursor-pointer hover:text-white transition-colors">
+                Resources
+                <svg class="w-3 h-3 opacity-70 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </div>
-            <div class="group relative flex items-center cursor-pointer hover:text-white transition-colors">
-                <span>About</span>
-                <svg class="w-3 h-3 ml-1 text-gray-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <div class="group relative flex items-center gap-1 cursor-pointer hover:text-white transition-colors">
+                About
+                <svg class="w-3 h-3 opacity-70 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </div>
         </div>
 
-        <!-- Login -->
-        <div class="hidden lg:block">
-            <a href="#" class="text-[13px] font-medium text-white hover:text-gray-300 transition-colors">Login</a>
+        <!-- Login Button -->
+        <div class="flex-shrink-0">
+            <a href="#" class="text-[15px] font-medium text-gray-200 hover:text-white transition-colors">Login</a>
         </div>
-
-        <!-- Mobile Menu Button (Hidden on Desktop) -->
-        <button class="lg:hidden text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-        </button>
     </nav>
 
-    <!-- Main Content -->
-    <main class="relative z-40 flex flex-col justify-center h-full px-6 md:px-10 -mt-20">
-        <div class="max-w-4xl">
-            <!-- Headline -->
-            <h1 class="animate-fade-in-up delay-200 font-serif text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.1] text-white mb-6 text-balance tracking-tight">
+    <!-- Main Hero Content -->
+    <main class="relative z-40 flex flex-col justify-center h-full px-6 md:px-10 lg:px-12 -mt-20 pointer-events-none">
+        <div class="max-w-4xl pointer-events-auto">
+            <h1 class="font-serif-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.95] tracking-tight text-white mb-8 animate-fade-in-up delay-100 text-balance">
                 Practice Made Perfect
             </h1>
             
-            <!-- Subheadline -->
-            <p class="animate-fade-in-up delay-300 text-lg md:text-[1.35rem] leading-relaxed text-gray-200 max-w-2xl text-pretty mb-10 font-light">
+            <p class="text-lg md:text-xl lg:text-[1.35rem] text-gray-200 leading-relaxed max-w-2xl mb-10 animate-fade-in-up delay-200 text-pretty font-light">
                 Today’s top law firms and in-house legal teams trust Harvey to elevate their craft and navigate complexity.
             </p>
             
-            <!-- CTA Button -->
-            <div class="animate-fade-in-up delay-400">
-                <button class="bg-white text-black text-[15px] font-medium px-6 py-3 rounded hover:bg-gray-100 transition-colors duration-300 ease-out transform hover:scale-[1.02] active:scale-[0.98]">
+            <div class="animate-fade-in-up delay-300">
+                <button class="bg-white text-black px-7 py-3.5 rounded-[4px] text-[15px] font-medium hover:bg-gray-100 transition-all transform hover:scale-[1.02] active:scale-[0.98]">
                     Request a Demo
                 </button>
             </div>
@@ -174,28 +152,26 @@
     </main>
 
     <!-- Footer / Logos Section -->
-    <footer class="absolute bottom-0 left-0 w-full z-40 bottom-fade pt-24 pb-8 px-6 md:px-10 animate-fade-in delay-700">
-        <div class="flex flex-col md:flex-row items-end justify-between w-full gap-8">
+    <footer class="absolute bottom-0 left-0 w-full z-50 px-6 md:px-10 lg:px-12 pb-8 pt-24 bg-gradient-to-t from-black via-black/90 to-transparent animate-fade-in delay-500">
+        <div class="flex flex-col xl:flex-row items-start xl:items-end justify-between gap-8 w-full">
             
-            <!-- Logo Strip -->
-            <div class="w-full md:w-3/4 overflow-x-auto no-scrollbar mask-image-linear-gradient">
-                <div class="flex items-center gap-8 md:gap-12 min-w-max opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
-                    <!-- Using placeholders for logos with specific text to mimic the screenshot brands -->
-                    <img src="https://placehold.co/140x40/000000/FFFFFF?text=A%26O+SHEARMAN&font=montserrat" alt="A&O Shearman" class="h-6 md:h-7 w-auto object-contain">
-                    <img src="https://placehold.co/120x40/000000/FFFFFF?text=Gleiss+Lutz&font=playfair-display" alt="Gleiss Lutz" class="h-6 md:h-8 w-auto object-contain">
-                    <img src="https://placehold.co/80x40/000000/FFFFFF?text=CMS&font=roboto" alt="CMS" class="h-6 md:h-8 w-auto object-contain">
-                    <img src="https://placehold.co/140x40/000000/FFFFFF?text=CUATRECASAS&font=lato" alt="Cuatrecasas" class="h-5 md:h-6 w-auto object-contain">
-                    <img src="https://placehold.co/140x40/000000/FFFFFF?text=THOMPSON+HINE&font=merriweather" alt="Thompson Hine" class="h-8 md:h-10 w-auto object-contain">
-                    <img src="https://placehold.co/100x40/000000/FFFFFF?text=MERCK&font=montserrat" alt="Merck" class="h-4 md:h-5 w-auto object-contain">
-                    <img src="https://placehold.co/120x40/000000/FFFFFF?text=COMCAST&font=open-sans" alt="Comcast" class="h-5 md:h-6 w-auto object-contain">
-                    <img src="https://placehold.co/100x40/000000/FFFFFF?text=DENTONS&font=oswald" alt="Dentons" class="h-5 md:h-6 w-auto object-contain">
-                    <img src="https://placehold.co/100x40/000000/FFFFFF?text=Baker&font=playfair-display" alt="Baker" class="h-5 md:h-6 w-auto object-contain opacity-50">
-                </div>
+            <!-- Logos Grid -->
+            <div class="flex flex-wrap items-center gap-x-8 gap-y-6 md:gap-x-12 opacity-80">
+                <!-- Using placeholders with black background to blend with footer gradient -->
+                <img src="https://placehold.co/140x25/000000/FFFFFF?text=BRIDGEWATER" alt="Bridgewater" class="h-5 md:h-6 object-contain opacity-90 hover:opacity-100 transition-opacity">
+                <img src="https://placehold.co/150x25/000000/FFFFFF?text=MACFARLANES" alt="Macfarlanes" class="h-5 md:h-6 object-contain opacity-90 hover:opacity-100 transition-opacity">
+                <img src="https://placehold.co/60x25/000000/FFFFFF?text=KKR" alt="KKR" class="h-5 md:h-6 object-contain opacity-90 hover:opacity-100 transition-opacity">
+                <img src="https://placehold.co/160x25/000000/FFFFFF?text=A%26O+SHEARMAN" alt="A&O Shearman" class="h-5 md:h-6 object-contain opacity-90 hover:opacity-100 transition-opacity">
+                <img src="https://placehold.co/110x25/000000/FFFFFF?text=Gleiss+Lutz" alt="Gleiss Lutz" class="h-5 md:h-6 object-contain opacity-90 hover:opacity-100 transition-opacity">
+                <img src="https://placehold.co/60x25/000000/FFFFFF?text=CMS" alt="CMS" class="h-5 md:h-6 object-contain opacity-90 hover:opacity-100 transition-opacity">
+                <img src="https://placehold.co/130x25/000000/FFFFFF?text=CUATRECASAS" alt="Cuatrecasas" class="h-5 md:h-6 object-contain opacity-90 hover:opacity-100 transition-opacity">
+                <img src="https://placehold.co/140x25/000000/FFFFFF?text=THOMPSON+HINE" alt="Thompson Hine" class="h-5 md:h-6 object-contain opacity-90 hover:opacity-100 transition-opacity">
+                <img src="https://placehold.co/80x25/000000/FFFFFF?text=MERCK" alt="Merck" class="h-5 md:h-6 object-contain opacity-90 hover:opacity-100 transition-opacity">
             </div>
 
             <!-- Customers Button -->
-            <div class="shrink-0 hidden md:block">
-                <button class="border border-white/30 text-white text-xs font-medium px-4 py-2 rounded hover:bg-white/10 transition-colors duration-300">
+            <div class="shrink-0">
+                <button class="border border-white/30 text-white px-5 py-2 rounded-[4px] text-sm hover:bg-white/10 hover:border-white/50 transition-all">
                     Our Customers
                 </button>
             </div>
